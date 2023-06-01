@@ -78,7 +78,7 @@ Resrouter.delete("/restaurants/:id/menu/:itemid",async(req,res)=>{
         let itemid=req.params.itemid;
         
 
-        await Restaurentmodel.findByIdAndDelete(_id,{$pull:{menu:{_id:itemid}}});
+        await Restaurentmodel.findByIdAndUpdate(_id,{$pull:{menu:{_id:itemid}}});
        
             
             res.status(200).send("deleted it succesfully")
