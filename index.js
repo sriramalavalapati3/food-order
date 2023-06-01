@@ -6,7 +6,14 @@ const swaggerui=require("swagger-ui-express");
 require('dotenv').config()
 app.use(express.json());
 const {connection}=require("./config/config")
+const {userrouter}=require("./routes/credential.route")
+const {Resrouter}=require("./routes/restaurent.router")
+app.use("/api",userrouter)
+app.use("/api",Resrouter)
 
+
+
+//===================================================> swagger code
 const options={
     definition:{
         openapi: "3.0.0",
@@ -30,8 +37,20 @@ const options={
     },
     apis:["./routes/*.js"]
 }
+
+
+
 const spacs=swaggerjsdoc(options);
 app.use("/api-docs",swaggerui.serve,swaggerui.setup(spacs))
+
+
+
+
+
+//==================================================================================
+
+
+
 app.listen(process.env.port,async()=>{
     try {
         await connection;

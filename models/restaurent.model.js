@@ -19,5 +19,5 @@ const resSchema=mongoose.Schema({
     
    
 })
-const Restaurentmodel=mongoose.model("RestaurentDETAILS",resSchema);
+const Restaurentmodel=mongoose.model("restaurentdetails",resSchema);
 module.exports={Restaurentmodel}

@@ -95,7 +95,7 @@
 
 const express=require("express");
 const userrouter=express.Router();
-const {Usermodel}=require("../model/user.model")
+const {Usermodel}=require("../models/user.model")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 
@@ -109,6 +109,26 @@ userrouter.post("/register",async(req,res)=>{
             if(!err)
             {
               let userdata= new Usermodel({name,Email,password:hash,address})
+              await userdata.save();
+              res.status(201).send("Registered successfully")
+            }else{
+                res.send("something went wrong while register")
+            }
+        }); 
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
+// patch
+userrouter.post("/user/:id/reset",async(req,res)=>{
+    let id=req.params.id
+    const {password}=req.body
+    try {
+        bcrypt.hash(password, 3, async function(err, hash) {
+            if(!err)
+            {
+              let userdata= Usermodel.findByIdAndUpdate({_id:id},{password:hash})
               await userdata.save();
               res.status(201).send("Registered successfully")
             }else{
@@ -148,6 +168,10 @@ userrouter.post("/login",async(req,res)=>{
  
     }
 })
+
+
+
+
 
 
 
