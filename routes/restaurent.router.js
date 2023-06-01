@@ -1,3 +1,201 @@
+/**
+ * @swagger
+ * paths:
+ *   /restaurants:
+ *     get:
+ *       summary: Get details of all restaurants
+ *       responses:
+ *         '200':
+ *           description: Successful operation
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/Restaurant'
+ *         '500':
+ *           description: Internal Server Error
+ *
+ * components:
+ *   schemas:
+ *     Restaurant:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The ID of the restaurant
+ *         name:
+ *           type: string
+ *           description: The name of the restaurant
+ *         address:
+ *           type: string
+ *           description: The address of the restaurant
+ *       required:
+ *         - id
+ *         - name
+ *         - address
+ */
+
+/**
+ * @swagger
+ * paths:
+ *   /restaurants/{id}:
+ *     get:
+ *       summary: Get details of a restaurant by ID
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: The ID of the restaurant
+ *       responses:
+ *         '200':
+ *           description: Successful operation
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/Restaurant'
+ *         '404':
+ *           description: Restaurant not found
+ *         '500':
+ *           description: Internal Server Error
+ *
+ * components:
+ *   schemas:
+ *     Restaurant:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The ID of the restaurant
+ *         name:
+ *           type: string
+ *           description: The name of the restaurant
+ *         address:
+ *           type: string
+ *           description: The address of the restaurant
+ *       required:
+ *         - id
+ *         - name
+ *         - address
+ */
+
+
+/**
+ * @swagger
+ * paths:
+ *   /restaurants/{id}/menu:
+ *     get:
+ *       summary: Get the menu of a particular restaurant
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: The ID of the restaurant
+ *       responses:
+ *         '200':
+ *           description: Successful operation
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/MenuItem'
+ *         '404':
+ *           description: Restaurant not found
+ *         '500':
+ *           description: Internal Server Error
+ *
+ * components:
+ *   schemas:
+ *     MenuItem:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: The name of the menu item
+ *         price:
+ *           type: number
+ *           format: float
+ *           description: The price of the menu item
+ *       required:
+ *         - name
+ *         - price
+ */
+
+
+/**
+ * @swagger
+ * paths:
+ *   /restaurants/{id}/menu:
+ *     post:
+ *       summary: Add an item to the menu of a particular restaurant
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: The ID of the restaurant
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/MenuItem'
+ *       responses:
+ *         '200':
+ *           description: Menu item added successfully
+ *         '500':
+ *           description: Internal Server Error
+ *
+ * components:
+ *   schemas:
+ *     MenuItem:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: The name of the menu item
+ *         price:
+ *           type: number
+ *           format: float
+ *           description: The price of the menu item
+ *       required:
+ *         - name
+ *         - price
+ */
+
+
+/**
+ * @swagger
+ * paths:
+ *   /restaurants/{id}/menu/{itemid}:
+ *     delete:
+ *       summary: Delete a menu item from a particular restaurant
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: The ID of the restaurant
+ *         - in: path
+ *           name: itemid
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: The ID of the menu item
+ *       responses:
+ *         '200':
+ *           description: Menu item deleted successfully
+ *         '500':
+ *           description: Internal Server Error
+ */
+
 const express=require("express");
 const Resrouter=express.Router();
 const {Restaurentmodel}=require("../models/restaurent.model")

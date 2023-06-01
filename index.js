@@ -31,7 +31,7 @@ const options={
         },
         servers:[
             {
-                url:"http://localhost:4500/"
+                url:"https://mock7-hkq8.onrender.com/"
             },
         ],
     },
