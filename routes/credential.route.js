@@ -103,7 +103,7 @@ const jwt=require("jsonwebtoken")
 
 
 userrouter.post("/register",async(req,res)=>{
-    const {name,Email,password,address}=req.body
+    const {name,email,password,address}=req.body
     try {
         bcrypt.hash(password, 3, async function(err, hash) {
             if(!err)
