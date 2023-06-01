@@ -3,7 +3,9 @@ const mongoose=require("mongoose");
 // ===============================================>  restaurentSchema
 const resSchema=mongoose.Schema({
     "name": String,
+    "email":String,
   "address": {
+    
     "street": String,
     "city": String,
     "state": String,
