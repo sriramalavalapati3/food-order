@@ -108,7 +108,7 @@ userrouter.post("/register",async(req,res)=>{
         bcrypt.hash(password, 3, async function(err, hash) {
             if(!err)
             {
-              let userdata= new Usermodel({name,Email,password:hash,address})
+              let userdata= new Usermodel({name,email,password:hash,address})
               await userdata.save();
               res.status(201).send("Registered successfully")
             }else{
