@@ -1,5 +1,54 @@
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     users:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Name of user
+ *         email:
+ *           type: string
+ *           description: User email
+ *         address:
+ *           type: object
+ *           description: User address
+ *           properties:
+ *             street:
+ *               type: string
+ *             city:
+ *               type: string
+ *             state:
+ *               type: string
+ *             country:
+ *               type: string
+ *             zip:
+ *               type: string
+ *         menu:
+ *           type: array
+ *           description: Menu items
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               image:
+ *                 type: string
+ *       required:
+ *         - name
+ *         - email
+ *         - address
+ *         - menu
+ */
+
+
+/**
+ * @swagger
  * paths:
  *   /restaurants:
  *     get:
